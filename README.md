@@ -1,7 +1,9 @@
 <p align="center">
   <img width=100 src="storybook-jsx.png">
   <br>
-  <h1 style="text-align:center;"><code>storybook-addon-jsx</code></h1>
+  <h1 style="text-align:center;">
+    <code style="text-align: center">storybook-addon-jsx</code>
+  </h1>
 </p>
 
 [![Build Status](https://travis-ci.org/Kilix/storybook-addon-jsx.svg?branch=master)](https://travis-ci.org/Kilix/storybook-addon-jsx)
@@ -32,7 +34,7 @@ For the latest storybook all you need to do is add the addon to your `.storybook
 
 ```js
 module.exports = {
-  addons: ['storybook-addon-jsx'],
+  addons: ['storybook-addon-jsx']
 };
 ```
 
@@ -95,7 +97,7 @@ If a Vue story defines its view with a template string then it will be displayed
 import { storiesOf } from '@storybook/vue';
 
 storiesOf('Vue', module).add('template property', () => ({
-  template: `<div></div>`,
+  template: `<div></div>`
 }));
 ```
 
@@ -111,8 +113,8 @@ This addon support all options from [react-element-to-jsx-string](https://github
 export default {
   title: 'Components/TestComponent',
   parameters: {
-    jsx: { skip: 1 },
-  },
+    jsx: { skip: 1 }
+  }
 };
 ```
 
@@ -123,7 +125,7 @@ export default {
   title: 'Components/TestComponent',
   parameters: {
     jsx: {
-      onBeforeRender: (domString) => {
+      onBeforeRender: domString => {
         if (domString.search('dangerouslySetInnerHTML') < 0) {
           return '';
         }
@@ -134,9 +136,9 @@ export default {
         } catch (err) {}
 
         return domString;
-      },
-    },
-  },
+      }
+    }
+  }
 };
 ```
 
@@ -150,9 +152,9 @@ export const Simple = () => <div>Hello</div>;
 Simple.story = {
   parameters: {
     jsx: {
-      disable: true,
-    },
-  },
+      disable: true
+    }
+  }
 };
 ```
 
@@ -171,7 +173,7 @@ import { addParameters } from '@storybook/react';
 addParameters({
   jsx: {
     // your options
-  },
+  }
 });
 ```
 
@@ -214,7 +216,7 @@ import { addParameters } from '@storybook/react';
 addParameters({
   jsx: {
     // your options
-  },
+  }
 });
 ```
 
@@ -271,10 +273,10 @@ config.module.rules.push({
     {
       loader: 'babel-loader',
       options: {
-        presets: ['env'],
-      },
-    },
-  ],
+        presets: ['env']
+      }
+    }
+  ]
 });
 ```
 
