@@ -5,17 +5,13 @@ import Simple from '../components/simple';
 
 storiesOf('With Props', module)
   .addWithJSX('No children - No options', () => (
-    <Simple foo="bar" test="test" value={true} />
+    <Simple value foo="bar" test="test" />
   ))
-  .addWithJSX(
-    'No children - Rename',
-    () => <Simple test="test" value={true} />,
-    {
-      displayName: 'Renamed'
-    }
-  )
+  .addWithJSX('No children - Rename', () => <Simple value test="test" />, {
+    displayName: 'Renamed'
+  })
   .addWithJSX('With children - No options', () => (
-    <Simple test="test" value={true}>
+    <Simple value test="test">
       <span>World</span>
     </Simple>
   ))
@@ -23,7 +19,7 @@ storiesOf('With Props', module)
     'With children - Skip',
     () => (
       <Simple>
-        <Simple test="test" value={true}>
+        <Simple value test="test">
           <div />
         </Simple>
       </Simple>
@@ -34,7 +30,7 @@ storiesOf('With Props', module)
     'With children - Skip and rename',
     () => (
       <Simple>
-        <Simple test="test" value={true}>
+        <Simple value test="test">
           <span>World</span>
         </Simple>
       </Simple>
@@ -45,7 +41,7 @@ storiesOf('With Props', module)
     'With dangerouslySetInnerHTML - onBeforeRender',
     () => (
       <Simple>
-        <Simple test="test" value={true}>
+        <Simple value test="test">
           <div
             dangerouslySetInnerHTML={{
               __html: '<div>Inner HTML<ul><li>1</li><li>2</li></ul></div>'
@@ -60,11 +56,32 @@ storiesOf('With Props', module)
         if (domString.search('dangerouslySetInnerHTML') < 0) {
           return '';
         }
+
         try {
           domString = /(dangerouslySetInnerHTML={{)([^}}]*)/.exec(domString)[2];
           domString = /(')([^']*)/.exec(domString)[2];
         } catch (err) {}
+
         return domString;
+      }
+    }
+  )
+  .addWithJSX(
+    'With Chromatic disable',
+    () => (
+      <Simple>
+        <Simple value test="test">
+          <div
+            dangerouslySetInnerHTML={{
+              __html: '<div>Inner HTML<ul><li>1</li><li>2</li></ul></div>'
+            }}
+          />
+        </Simple>
+      </Simple>
+    ),
+    {
+      chromatic: {
+        disable: false
       }
     }
   );

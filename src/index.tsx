@@ -196,7 +196,34 @@ export const jsxDecorator = makeDecorator({
 });
 
 export default {
-  addWithJSX(this: StoryApi, kind: string, storyFn: StoryFn<any>) {
-    return this.add(kind, context => jsxDecorator(storyFn, context));
+  addWithJSX(
+    this: StoryApi,
+    kind: string,
+    storyFn: StoryFn<any>,
+    options: JSXOptions
+  ) {
+    return this.add(kind, context => {
+      /**
+       * We want to enable users to still
+       * pass arbitrary arguments to the
+       * global Storybook context when using the
+       * addon. For example,
+       *
+       * addWithJSX(..., { chromatic: { disable: false }} )
+       */
+      const parameters = {
+        ...(context || {}),
+        parameters: {
+          ...((context && context.parameters) || {}),
+          jsx: {
+            ...((context && context.parameters && context.parameters.jsx) ||
+              {}),
+            ...(options || {})
+          }
+        }
+      } as StoryContext;
+
+      return jsxDecorator(storyFn, parameters);
+    });
   }
 };

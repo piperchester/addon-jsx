@@ -103,9 +103,22 @@ storiesOf('Vue', module).add('template property', () => ({
 
 ## Options
 
+### Chromatic
+
+This addon works with the Chromatic Storybook plugin, so you're able to visually test your stories as well.
+
+```javascript
+export default {
+  title: 'Components/TestComponent',
+  parameters: {
+    chromatic: { disable: false }
+  }
+};
+```
+
 ### JSX
 
-This addon support all options from [react-element-to-jsx-string](https://github.com/algolia/react-element-to-jsx-string) as well as the following options.
+This addon support all options from [react-element-to-jsx-string](https://github.com/algolia/react-element-to-jsx-string) as well as the following options:
 
 - `skip` (default: 0) : Skip element in your component to display
 
