@@ -2,32 +2,11 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 
 const Component /**
-cccccccccccccccccccccccc *
-cccccccccccccccccccccccc */ /**
-cccccccccccccccccccccccc *
-cccccccccccccccccccccccc */ /**
-cccccccccccccccccccccccc *
-cccccccccccccccccccccccc */ /**
-cccccccccccccccccccccccc *
-cccccccccccccccccccccccc */ /**
-cccccccccccccccccccccccc *
-cccccccccccccccccccccccc */ /**
 cccccccccccccccccc *
 cccccccccccccccccc */ = () => (
   <div id="from-function" />
 );
-
 const Simple /**
-ccccccccccccccccccccc *
-ccccccccccccccccccccc */ /**
-ccccccccccccccccccccc *
-ccccccccccccccccccccc */ /**
-ccccccccccccccccccccc *
-ccccccccccccccccccccc */ /**
-ccccccccccccccccccccc *
-ccccccccccccccccccccc */ /**
-ccccccccccccccccccccc *
-ccccccccccccccccccccc */ /**
 ccccccccccccccc *
 ccccccccccccccc */ = props => (
   <div>
