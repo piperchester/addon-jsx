@@ -1,7 +1,7 @@
 <p align="center">
   <img width=100 src="storybook-jsx.png">
   <br>
-  <h1 style="text-align:center;">Storybook-addon-jsx</h1>
+  <h1 style="text-align:center;"><code>storybook-addon-jsx</code></h1>
 </p>
 
 [![Build Status](https://travis-ci.org/Kilix/storybook-addon-jsx.svg?branch=master)](https://travis-ci.org/Kilix/storybook-addon-jsx)
@@ -32,14 +32,14 @@ For the latest storybook all you need to do is add the addon to your `.storybook
 
 ```js
 module.exports = {
-  addons: ["storybook-addon-jsx"],
+  addons: ['storybook-addon-jsx'],
 };
 ```
 
 If you are using storybook@5.x or lower you will need to add the following to `.storybook/addons.js`:
 
 ```js
-import "storybook-addon-jsx/register";
+import 'storybook-addon-jsx/register';
 ```
 
 ### Usage
@@ -70,8 +70,8 @@ export const Orleans = () => <Test color="#236544">Hello</Test>;
 Or to configure it globally add the `jsxDecorator` to your `.storybook/preview.js`:
 
 ```js
-const { addDecorator } = require("@storybook/react");
-const { jsxDecorator } = require("storybook-addon-jsx");
+const { addDecorator } = require('@storybook/react');
+const { jsxDecorator } = require('storybook-addon-jsx');
 
 addDecorator(jsxDecorator);
 ```
@@ -83,8 +83,8 @@ You can also use this addon with `@storybook/vue`.
 **`.storybook/preview.js`**
 
 ```js
-import { configure, addDecorator } from "@storybook/vue";
-import { jsxDecorator } from "storybook-addon-jsx";
+import { configure, addDecorator } from '@storybook/vue';
+import { jsxDecorator } from 'storybook-addon-jsx';
 
 addDecorator(jsxDecorator);
 ```
@@ -92,9 +92,9 @@ addDecorator(jsxDecorator);
 If a Vue story defines its view with a template string then it will be displayed.
 
 ```js
-import { storiesOf } from "@storybook/vue";
+import { storiesOf } from '@storybook/vue';
 
-storiesOf("Vue", module).add("template property", () => ({
+storiesOf('Vue', module).add('template property', () => ({
   template: `<div></div>`,
 }));
 ```
@@ -109,7 +109,7 @@ This addon support all options from [react-element-to-jsx-string](https://github
 
 ```javascript
 export default {
-  title: "Components/TestComponent",
+  title: 'Components/TestComponent',
   parameters: {
     jsx: { skip: 1 },
   },
@@ -120,20 +120,20 @@ export default {
 
 ```js
 export default {
-  title: "Components/TestComponent",
+  title: 'Components/TestComponent',
   parameters: {
     jsx: {
-      onBeforeRender: domString => {
+      onBeforeRender: (domString) => {
         if (domString.search('dangerouslySetInnerHTML') < 0) {
-          return ''
+          return '';
         }
 
         try {
-          domString = /(dangerouslySetInnerHTML={{)([^}}]*)/.exec(domString)[2]
-          domString = /(')([^']*)/.exec(domString)[2]
+          domString = /(dangerouslySetInnerHTML={{)([^}}]*)/.exec(domString)[2];
+          domString = /(')([^']*)/.exec(domString)[2];
         } catch (err) {}
 
-        return domString
+        return domString;
       },
     },
   },
@@ -166,7 +166,7 @@ Simple.story = {
 To configure global options for this plugin, add the following to your `config.js`.
 
 ```js
-import { addParameters } from "@storybook/react";
+import { addParameters } from '@storybook/react';
 
 addParameters({
   jsx: {
@@ -189,7 +189,7 @@ To override this include the following util function that will print an easiy to
 export const callback = <T extends Function>(fn: T): T => {
   /** A toString to render the function in storybook */
   // eslint-disable-next-line no-param-reassign
-  fn.toString = () => "() => {}";
+  fn.toString = () => '() => {}';
   return fn;
 };
 ```
@@ -209,7 +209,7 @@ This is accomplished through [a babel plugin](https://github.com/storybookjs/bab
 To use the docgen information for TypeScript components you must include be using [a typescript docgen loader](https://github.com/strothj/react-docgen-typescript-loader)
 
 ```js
-import { addParameters } from "@storybook/react";
+import { addParameters } from '@storybook/react';
 
 addParameters({
   jsx: {
@@ -238,7 +238,7 @@ In your component's `package.json`:
 Then in your webpack config for storybook:
 
 ```js
-config.resolve.mainFields = ["source", "module", "main"];
+config.resolve.mainFields = ['source', 'module', 'main'];
 ```
 
 ## Testing with storyshots
@@ -246,9 +246,9 @@ config.resolve.mainFields = ["source", "module", "main"];
 If you are using the `addWithJSX` method you will need to include `storybook-addon-jsx` in your test file.
 
 ```js
-import initStoryshots from "@storybook/addon-storyshots";
-import { setAddon } from "@storybook/react";
-import JSXAddon from "storybook-addon-jsx";
+import initStoryshots from '@storybook/addon-storyshots';
+import { setAddon } from '@storybook/react';
+import JSXAddon from 'storybook-addon-jsx';
 
 setAddon(JSXAddon);
 
@@ -266,12 +266,12 @@ To get around this you can add the following to your `webpack.config.js` file
 ```js
 config.module.rules.push({
   test: /\.js/,
-  include: path.resolve(__dirname, "../node_modules/stringify-object"),
+  include: path.resolve(__dirname, '../node_modules/stringify-object'),
   use: [
     {
-      loader: "babel-loader",
+      loader: 'babel-loader',
       options: {
-        presets: ["env"],
+        presets: ['env'],
       },
     },
   ],
